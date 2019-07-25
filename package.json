@@ -1,6 +1,6 @@
 {
   "name": "norsk-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validering av kontonummer, KID, fødselsnummer og organisasjonsnummer",
   "main": "src/index.js",
   "scripts": {
