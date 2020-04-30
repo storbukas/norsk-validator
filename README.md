@@ -1,6 +1,8 @@
 # norsk-validator
 
-npm-modul for validering av 
+test
+
+[npm-modul](https://www.npmjs.com/package/norsk-validator) for validering av
 - kontonummer
 - kid
 - fødselsnummer
