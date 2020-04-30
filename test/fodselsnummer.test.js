@@ -9,6 +9,21 @@ tap.equal(
 );
 
 tap.equal(
+  true, validator.fodselsnummer('30042099941'),
+  '30042099941 er et gyldig fødselsnummer'
+);
+
+tap.equal(
+  true, validator.fodselsnummer('22052099424'),
+  '22052099424 er et gyldig fødselsnummer'
+);
+
+tap.equal(
+  true, validator.fodselsnummer('09062099345'),
+  '09062099345 er et gyldig fødselsnummer'
+);
+
+tap.equal(
   true, validator.fodselsnummer('020161 26007'),
   '020161 26007 er et gyldig fødselsnummer'
 );
