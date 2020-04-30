@@ -7,7 +7,7 @@ const vekttallSum = (fodselsnummer, factors) => {
   let sum = 0;
   const l = factors.length;
 
-  for (let i = 1; i < l; i += 1) {
+  for (let i = 0; i < l; i += 1) {
     sum += parseInt(fodselsnummer.charAt(i), 10) * factors[i];
   }
 
