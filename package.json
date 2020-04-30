@@ -8,7 +8,10 @@
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "coverage": "tap test/*.js --coverage",
-    "refresh": "rm -rf node_modules && rm package-lock.json && npm install"
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
+    "size-build": "npm install",
+    "size": "size-limit",
+    "size-watch": "size-limit --why"
   },
   "repository": {
     "type": "git",
@@ -33,9 +36,16 @@
   },
   "homepage": "https://github.com/storbukas/norsk-validator#readme",
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.4.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
+    "size-limit": "^4.4.5",
     "tap": "^14.4.2"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "src/index.js"
+    }
+  ]
 }

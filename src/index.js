@@ -1,6 +1,3 @@
-#!/usr/bin/env node
-
-
 const fodselsnummer = require('./fodselsnummer');
 const kidnummer = require('./kidnummer');
 const kontonummer = require('./kontonummer');
