@@ -10,7 +10,7 @@
     "build": "babel src --out-dir lib --extensions \".js,.jsx\" --source-maps inline",
     "coverage": "tap test/*.js --coverage",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
-    "size-build": "npm install",
+    "size-build": "npm run build",
     "size": "size-limit",
     "size-watch": "size-limit --why"
   },
@@ -50,7 +50,7 @@
   },
   "size-limit": [
     {
-      "path": "src/index.js"
+      "path": "lib/index.js"
     }
   ]
 }
