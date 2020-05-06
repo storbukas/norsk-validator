@@ -1,15 +1,16 @@
 {
   "name": "norsk-validator",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Validering av kontonummer, KID, fødselsnummer og organisasjonsnummer",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "tap --reporter=spec test/*.test.js",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
+    "build": "babel src --out-dir lib --extensions \".js,.jsx\" --source-maps inline",
     "coverage": "tap test/*.js --coverage",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
-    "size-build": "npm install",
+    "size-build": "npm run build",
     "size": "size-limit",
     "size-watch": "size-limit --why"
   },
@@ -36,16 +37,20 @@
   },
   "homepage": "https://github.com/storbukas/norsk-validator#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
     "@size-limit/preset-small-lib": "^4.4.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "size-limit": "^4.4.5",
-    "tap": "^14.4.2"
+    "tap": "^14.10.7"
   },
   "size-limit": [
     {
-      "path": "src/index.js"
+      "path": "lib/index.js"
     }
   ]
 }
