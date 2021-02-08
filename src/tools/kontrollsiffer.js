@@ -1,3 +1,18 @@
+/*
+ *  Test av fødselsnummer
+ *
+ *  updated 08 Feb 2021
+ *  by Lars Erik Storbukås <https://github.com/storbukas>
+ *
+ *  Source: https://github.com/storbukas/norsk-validator
+ *
+ *  Licensed under the MIT License
+ *  https://opensource.org/licenses/MIT
+ *
+ */
+
+'use strict';
+
 const MOD11 = 11;
 const MOD10 = 10;
 

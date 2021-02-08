@@ -1,3 +1,18 @@
+/*
+ *  Kode for validering av fødselsnummer
+ *
+ *  updated 08 Feb 2021
+ *  by Lars Erik Storbukås <https://github.com/storbukas>
+ *
+ *  Source: https://github.com/storbukas/norsk-validator
+ *
+ *  Licensed under the MIT License
+ *  https://opensource.org/licenses/MIT
+ *
+ */
+
+'use strict';
+
 const MOD11 = 11;
 const vekttallKontrollsiffer1 = [3, 7, 6, 1, 8, 9, 4, 5, 2];
 const vekttallKontrollsiffer2 = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];

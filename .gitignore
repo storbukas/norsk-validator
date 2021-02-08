@@ -31,7 +31,6 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
-/lib/
 
 # Dependency directories
 node_modules/
@@ -60,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# Build
+/lib/
+
+# NPM
+package-lock.json
