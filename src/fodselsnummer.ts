@@ -1,7 +1,7 @@
 /*
  *  Kode for validering av fødselsnummer
  *
- *  updated 08 Feb 2021
+ *  updated 26 Jan 2022
  *  by Lars Erik Storbukås <https://github.com/storbukas>
  *
  *  Source: https://github.com/storbukas/norsk-validator
@@ -18,7 +18,7 @@ const vekttallKontrollsiffer1 = [3, 7, 6, 1, 8, 9, 4, 5, 2];
 const vekttallKontrollsiffer2 = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
 const PERIOD_COMMA_SPACE_REGEX = /[,.\s]/g;
 
-const vekttallSum = (fodselsnummer, factors) => {
+const vekttallSum = (fodselsnummer: any, factors: any) => {
   let sum = 0;
   const l = factors.length;
 
@@ -29,7 +29,7 @@ const vekttallSum = (fodselsnummer, factors) => {
   return sum;
 };
 
-const fodselsnummer = (fodselsnummer) => {
+const fodselsnummer = (fodselsnummer: any) => {
   const fodselsnummerString = fodselsnummer.toString()
     .replace(PERIOD_COMMA_SPACE_REGEX, '');
 

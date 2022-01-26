@@ -1,11 +1,12 @@
 {
   "name": "norsk-validator",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Validering av kontonummer, KID, fødselsnummer og organisasjonsnummer",
   "author": "Lars Erik Storbukås",
   "homepage": "https://github.com/storbukas/norsk-validator#readme",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/storbukas/norsk-validator.git"
@@ -14,7 +15,7 @@
     "test": "tap --reporter=spec test/*.test.js",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
-    "build": "babel src --out-dir lib --extensions \".js,.jsx\" --source-maps inline",
+    "build": "tsc",
     "coverage": "tap test/*.js --coverage",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
     "size-build": "npm run build",
@@ -46,7 +47,8 @@
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "size-limit": "^4.4.5",
-    "tap": "^14.10.7"
+    "tap": "^14.10.7",
+    "typescript": "^2.7.2"
   },
   "size-limit": [
     {

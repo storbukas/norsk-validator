@@ -1,7 +1,7 @@
 /*
  *  Test av fødselsnummer
  *
- *  updated 08 Feb 2021
+ *  updated 26 Jan 2022
  *  by Lars Erik Storbukås <https://github.com/storbukas>
  *
  *  Source: https://github.com/storbukas/norsk-validator
@@ -16,7 +16,7 @@
 const MOD11 = 11;
 const MOD10 = 10;
 
-export const kontrollsiffferMod11 = (tall) => {
+export const kontrollsiffferMod11 = (tall: any) => {
   let kontrollsiffer = 2;
   let sum = 0;
 
@@ -35,13 +35,13 @@ export const kontrollsiffferMod11 = (tall) => {
   return result === MOD11 ? 0 : result;
 };
 
-export const kontrollsiffferMod10 = (tall) => {
+export const kontrollsiffferMod10 = (tall: any) => {
   let sum = 0;
   let dbl;
 
   for (let i = tall.length - 2; i >= 0; i -= 2) {
     dbl = (parseInt(tall.charAt(i), 10) * 2).toString();
-    sum += parseInt(dbl.charAt(0), 10) + parseInt(dbl.charAt(1) || 0, 10);
+    sum += parseInt(dbl.charAt(0), 10) + parseInt(dbl.charAt(1) || '0', 10);
   }
 
   for (let i = tall.length - 3; i >= 0; i -= 2) {

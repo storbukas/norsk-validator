@@ -1,7 +1,7 @@
 /*
  *  Kode for validering av kontonummer
  *
- *  updated 08 Feb 2021
+ *  updated 26 Jan 2022
  *  by Lars Erik Storbukås <https://github.com/storbukas>
  *
  *  Source: https://github.com/storbukas/norsk-validator
@@ -13,11 +13,11 @@
 
 'use strict';
 
-const kontrollsiffer = require('./tools/kontrollsiffer');
+import { kontrollsiffferMod11 } from "./tools/kontrollsiffer";
 
 const PERIOD_COMMA_SPACE_REGEX = /[,.\s]/g;
 
-const kontonummer = (kontonummer) => {
+const kontonummer = (kontonummer: any) => {
   if (!kontonummer) {
     return false;
   }
@@ -30,7 +30,7 @@ const kontonummer = (kontonummer) => {
 
   return (
     parseInt(kontonummerString.charAt(kontonummerString.length - 1), 10)
-    === kontrollsiffer.kontrollsiffferMod11(kontonummerString)
+    === kontrollsiffferMod11(kontonummerString)
   );
 };
 

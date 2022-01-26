@@ -1,7 +1,7 @@
 /*
  *  Kode for validering av organisasjonsnummer
  *
- *  updated 08 Feb 2021
+ *  updated 26 Jan 2022
  *  by Lars Erik Storbukås <https://github.com/storbukas>
  *
  *  Source: https://github.com/storbukas/norsk-validator
@@ -13,9 +13,9 @@
 
 'use strict';
 
-const kontrollsiffer = require('./tools/kontrollsiffer');
+import { kontrollsiffferMod11 } from "./tools/kontrollsiffer";
 
-const organisasjonsnummer = (organisasjonsnummer) => {
+const organisasjonsnummer = (organisasjonsnummer: any) => {
   const organisasjonsnummerString = organisasjonsnummer.toString();
 
   if (!organisasjonsnummerString || organisasjonsnummerString.length !== 9) {
@@ -23,7 +23,7 @@ const organisasjonsnummer = (organisasjonsnummer) => {
   }
 
   return parseInt(organisasjonsnummerString.charAt(organisasjonsnummerString.length - 1), 10)
-    === kontrollsiffer.kontrollsiffferMod11(organisasjonsnummerString);
+    === kontrollsiffferMod11(organisasjonsnummerString);
 };
 
 export default organisasjonsnummer;

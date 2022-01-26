@@ -61,7 +61,10 @@ typings/
 .next
 
 # Build
-/lib/
+/dist/
 
 # NPM
 package-lock.json
+
+#IDE
+.idea
