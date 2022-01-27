@@ -6,15 +6,19 @@ npm-modul for validering av
 - fødselsnummer
 - organisasjonsnummer
 
-## Bruk
+# Installasjon
 
-```npm install norsk-validator```
-
-```javascript
-const validator = require('norsk-validator');
+```sh
+npm install --save norsk-validator
 ```
 
-```javascript
+# Bruk
+
+```ts
+import validator from 'norsk-validator';
+```
+
+```ts
 validator.kontonummer('76940512057');
 validator.kontonummer('7694 05 12057');
 validator.kontonummer('7694.05.12057');
