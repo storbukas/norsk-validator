@@ -1,9 +1,6 @@
 /*
  *  Test av KID-nummer
  *
- *  updated 08 Feb 2021
- *  by Lars Erik Storbukås <https://github.com/storbukas>
- *
  *  Source: https://github.com/storbukas/norsk-validator
  *
  *  Licensed under the MIT License
@@ -13,20 +10,20 @@
 
 'use strict';
 
-const tap = require('tap');
-const validator = require('../src/index.js');
+const { test } = require('node:test');
+const assert = require('node:assert');
+const { kidnummer } = require('../dist/index.js');
 
-tap.equal(
-  true, validator.kidnummer('100001928231'),
-  '100001928231 er en gyldig KID'
-);
+test('kidnummer validation', async (t) => {
+  await t.test('100001928231 er en gyldig KID', () => {
+    assert.strictEqual(kidnummer('100001928231'), true);
+  });
 
-tap.equal(
-  false, validator.kidnummer('100001928232'),
-  '100001928232 er IKKE en gyldig KID'
-);
+  await t.test('100001928232 er IKKE en gyldig KID', () => {
+    assert.strictEqual(kidnummer('100001928232'), false);
+  });
 
-tap.equal(
-  false, validator.kidnummer(''),
-  '"" er IKKE en gyldig KID'
-);
+  await t.test('tom streng er IKKE en gyldig KID', () => {
+    assert.strictEqual(kidnummer(''), false);
+  });
+});

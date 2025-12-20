@@ -1,9 +1,6 @@
 /*
  *  Test av fødselsnummer
  *
- *  updated 08 Feb 2021
- *  by Lars Erik Storbukås <https://github.com/storbukas>
- *
  *  Source: https://github.com/storbukas/norsk-validator
  *
  *  Licensed under the MIT License
@@ -13,45 +10,40 @@
 
 'use strict';
 
-const tap = require('tap');
-const validator = require('../src/index.js');
+const { test } = require('node:test');
+const assert = require('node:assert');
+const { fodselsnummer } = require('../dist/index.js');
 
-tap.equal(
-  true, validator.fodselsnummer('01010750160'),
-  '01010750160 er et gyldig fødselsnummer'
-);
+test('fodselsnummer validation', async (t) => {
+  await t.test('01010750160 er et gyldig fødselsnummer', () => {
+    assert.strictEqual(fodselsnummer('01010750160'), true);
+  });
 
-tap.equal(
-  true, validator.fodselsnummer('30042099941'),
-  '30042099941 er et gyldig fødselsnummer'
-);
+  await t.test('30042099941 er et gyldig fødselsnummer', () => {
+    assert.strictEqual(fodselsnummer('30042099941'), true);
+  });
 
-tap.equal(
-  true, validator.fodselsnummer('22052099424'),
-  '22052099424 er et gyldig fødselsnummer'
-);
+  await t.test('22052099424 er et gyldig fødselsnummer', () => {
+    assert.strictEqual(fodselsnummer('22052099424'), true);
+  });
 
-tap.equal(
-  true, validator.fodselsnummer('09062099345'),
-  '09062099345 er et gyldig fødselsnummer'
-);
+  await t.test('09062099345 er et gyldig fødselsnummer', () => {
+    assert.strictEqual(fodselsnummer('09062099345'), true);
+  });
 
-tap.equal(
-  true, validator.fodselsnummer('020161 26007'),
-  '020161 26007 er et gyldig fødselsnummer'
-);
+  await t.test('020161 26007 er et gyldig fødselsnummer (med mellomrom)', () => {
+    assert.strictEqual(fodselsnummer('020161 26007'), true);
+  });
 
-tap.equal(
-  false, validator.fodselsnummer('11111234567'),
-  '11111234567 er IKKE et gyldig fødselsnummer'
-);
+  await t.test('11111234567 er IKKE et gyldig fødselsnummer', () => {
+    assert.strictEqual(fodselsnummer('11111234567'), false);
+  });
 
-tap.equal(
-  false, validator.fodselsnummer('1234123456'),
-  '1234123456 er IKKE et gyldig fødselsnummer'
-);
+  await t.test('1234123456 er IKKE et gyldig fødselsnummer (feil lengde)', () => {
+    assert.strictEqual(fodselsnummer('1234123456'), false);
+  });
 
-tap.equal(
-  false, validator.fodselsnummer(''),
-  '"" er IKKE et gyldig fødselsnummer'
-);
+  await t.test('tom streng er IKKE et gyldig fødselsnummer', () => {
+    assert.strictEqual(fodselsnummer(''), false);
+  });
+});

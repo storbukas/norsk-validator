@@ -11,13 +11,11 @@
  *
  */
 
-'use strict';
-
-import { kontrollsiffferMod11 } from "./tools/kontrollsiffer";
+import { kontrollsifferMod11 } from './tools/kontrollsiffer';
 
 const PERIOD_COMMA_SPACE_REGEX = /[,.\s]/g;
 
-const kontonummer = (kontonummer: any) => {
+const kontonummer = (kontonummer: string | number | null | undefined): boolean => {
   if (!kontonummer) {
     return false;
   }
@@ -30,7 +28,7 @@ const kontonummer = (kontonummer: any) => {
 
   return (
     parseInt(kontonummerString.charAt(kontonummerString.length - 1), 10)
-    === kontrollsiffferMod11(kontonummerString)
+    === kontrollsifferMod11(kontonummerString)
   );
 };
 

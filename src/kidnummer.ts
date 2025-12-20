@@ -11,24 +11,28 @@
  *
  */
 
-'use strict';
-
-import { kontrollsiffferMod10, kontrollsiffferMod11 } from "./tools/kontrollsiffer";
+import { kontrollsifferMod10, kontrollsifferMod11 } from './tools/kontrollsiffer';
 
 const SPACE_REGEX = /[\s]/g;
 
-const kidnummer = (kidnummer: any, mod11 = true, mod10 = true) => {
-  if (!kidnummer || kidnummer.length === 0) {
+const kidnummer = (
+  kidnummer: string | number | null | undefined,
+  mod11 = true,
+  mod10 = true
+): boolean => {
+  if (!kidnummer) {
     return false;
   }
 
   const kidnummerString = kidnummer.toString().replace(SPACE_REGEX, '');
 
-  const controlDigit = kidnummerString.charAt(kidnummer.length - 1);
-  const erMod11 = parseInt(controlDigit, 10)
-    === kontrollsiffferMod11(kidnummerString);
-  const erMod10 = parseInt(controlDigit, 10)
-    === kontrollsiffferMod10(kidnummerString);
+  if (kidnummerString.length === 0) {
+    return false;
+  }
+
+  const controlDigit = parseInt(kidnummerString.charAt(kidnummerString.length - 1), 10);
+  const erMod11 = controlDigit === kontrollsifferMod11(kidnummerString);
+  const erMod10 = controlDigit === kontrollsifferMod10(kidnummerString);
 
   return (mod11 && erMod11) || (mod10 && erMod10);
 };

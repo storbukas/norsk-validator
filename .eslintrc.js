@@ -1,21 +1,22 @@
 module.exports = {
   env: {
-    browser: true,
-    commonjs: true,
-    es6: true,
+    node: true,
+    es2022: true,
   },
-  extends: [
-    'airbnb-base',
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    project: './tsconfig.json',
   },
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   rules: {
-    "no-shadow": "off", // because of export default error
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
+  ignorePatterns: ['dist/', 'node_modules/', 'test/'],
 };

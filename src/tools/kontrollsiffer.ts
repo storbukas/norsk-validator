@@ -1,5 +1,5 @@
 /*
- *  Test av fødselsnummer
+ *  Kontrollsiffer-beregning
  *
  *  updated 26 Jan 2022
  *  by Lars Erik Storbukås <https://github.com/storbukas>
@@ -11,17 +11,15 @@
  *
  */
 
-'use strict';
-
 const MOD11 = 11;
 const MOD10 = 10;
 
-export const kontrollsiffferMod11 = (tall: any) => {
+export const kontrollsifferMod11 = (tall: string): number => {
   let kontrollsiffer = 2;
   let sum = 0;
 
   for (let i = tall.length - 2; i >= 0; --i) {
-    sum += tall.charAt(i) * kontrollsiffer;
+    sum += parseInt(tall.charAt(i), 10) * kontrollsiffer;
 
     kontrollsiffer += 1;
 
@@ -35,12 +33,11 @@ export const kontrollsiffferMod11 = (tall: any) => {
   return result === MOD11 ? 0 : result;
 };
 
-export const kontrollsiffferMod10 = (tall: any) => {
+export const kontrollsifferMod10 = (tall: string): number => {
   let sum = 0;
-  let dbl;
 
   for (let i = tall.length - 2; i >= 0; i -= 2) {
-    dbl = (parseInt(tall.charAt(i), 10) * 2).toString();
+    const dbl = (parseInt(tall.charAt(i), 10) * 2).toString();
     sum += parseInt(dbl.charAt(0), 10) + parseInt(dbl.charAt(1) || '0', 10);
   }
 

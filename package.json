@@ -1,58 +1,76 @@
 {
   "name": "norsk-validator",
-  "version": "1.2.0",
-  "description": "Validering av kontonummer, KID, fødselsnummer og organisasjonsnummer",
+  "version": "2.0.0",
+  "description": "Validering av norske identifikatorer: fødselsnummer, D-nummer, H-nummer, FH-nummer, DUF-nummer, organisasjonsnummer, MVA-nummer, kontonummer, IBAN og KID",
   "author": "Lars Erik Storbukås",
   "homepage": "https://github.com/storbukas/norsk-validator#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/storbukas/norsk-validator.git"
   },
   "scripts": {
-    "test": "tap --reporter=spec test/*.test.js",
+    "test": "npm run build && node --test test/*.test.js",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "build": "tsc",
-    "coverage": "tap test/*.js --coverage",
+    "typecheck": "tsc --noEmit",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
     "size-build": "npm run build",
     "size": "size-limit",
-    "size-watch": "size-limit --why"
+    "size-watch": "size-limit --why",
+    "prepublishOnly": "npm run build && npm run lint && npm test"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=18"
   },
   "keywords": [
     "kontonummer",
     "kid",
     "fødselsnummer",
     "organisasjonsnummer",
+    "d-nummer",
+    "dnummer",
+    "h-nummer",
+    "hnummer",
+    "fh-nummer",
+    "duf-nummer",
+    "mva",
+    "iban",
     "validator",
+    "validation",
+    "norwegian",
     "Norge",
-    "Norway"
+    "Norway",
+    "norsk"
   ],
   "bugs": {
     "url": "https://github.com/storbukas/norsk-validator/issues"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "@size-limit/preset-small-lib": "^4.4.5",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "size-limit": "^4.4.5",
-    "tap": "^14.10.7",
-    "typescript": "^2.7.2"
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^8.57.1",
+    "size-limit": "^11.1.6",
+    "typescript": "^5.7.2"
   },
   "size-limit": [
     {
-      "path": "lib/index.js"
+      "path": "dist/index.js"
     }
   ]
 }

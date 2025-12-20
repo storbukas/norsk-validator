@@ -1,8 +1,5 @@
 /*
- *  Validering av fødselsnummer, organisasjonsnummer, kontonummer og KID
- *
- *  updated 26 Jan 2022
- *  by Lars Erik Storbukås <https://github.com/storbukas>
+ *  Validering av norske identifikatorer
  *
  *  Source: https://github.com/storbukas/norsk-validator
  *
@@ -11,16 +8,39 @@
  *
  */
 
-'use strict';
+import dnummer from './dnummer';
+import dufnummer from './dufnummer';
+import fhnummer from './fhnummer';
+import fodselsnummer from './fodselsnummer';
+import hnummer from './hnummer';
+import iban from './iban';
+import kidnummer from './kidnummer';
+import kontonummer from './kontonummer';
+import mvanummer from './mvanummer';
+import organisasjonsnummer from './organisasjonsnummer';
 
-import fodselsnummer from "./fodselsnummer";
-import kidnummer from "./kidnummer";
-import kontonummer from "./kontonummer";
-import organisasjonsnummer from "./organisasjonsnummer";
+export {
+  dnummer,
+  dufnummer,
+  fhnummer,
+  fodselsnummer,
+  hnummer,
+  iban,
+  kidnummer,
+  kontonummer,
+  mvanummer,
+  organisasjonsnummer,
+};
 
 export default {
-  kontonummer,
-  kidnummer,
+  dnummer,
+  dufnummer,
+  fhnummer,
   fodselsnummer,
+  hnummer,
+  iban,
+  kidnummer,
+  kontonummer,
+  mvanummer,
   organisasjonsnummer,
 };

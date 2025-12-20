@@ -11,29 +11,33 @@
  *
  */
 
-'use strict';
-
 const MOD11 = 11;
 const vekttallKontrollsiffer1 = [3, 7, 6, 1, 8, 9, 4, 5, 2];
 const vekttallKontrollsiffer2 = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
 const PERIOD_COMMA_SPACE_REGEX = /[,.\s]/g;
 
-const vekttallSum = (fodselsnummer: any, factors: any) => {
+const vekttallSum = (fodselsnummer: string, factors: readonly number[]): number => {
   let sum = 0;
-  const l = factors.length;
 
-  for (let i = 0; i < l; i += 1) {
-    sum += parseInt(fodselsnummer.charAt(i), 10) * factors[i];
+  for (let i = 0; i < factors.length; i += 1) {
+    const factor = factors[i];
+    if (factor !== undefined) {
+      sum += parseInt(fodselsnummer.charAt(i), 10) * factor;
+    }
   }
 
   return sum;
 };
 
-const fodselsnummer = (fodselsnummer: any) => {
+const fodselsnummer = (fodselsnummer: string | number | null | undefined): boolean => {
+  if (!fodselsnummer) {
+    return false;
+  }
+
   const fodselsnummerString = fodselsnummer.toString()
     .replace(PERIOD_COMMA_SPACE_REGEX, '');
 
-  if (!fodselsnummerString || fodselsnummerString.length !== 11) {
+  if (fodselsnummerString.length !== 11) {
     return false;
   }
 

@@ -68,3 +68,6 @@ package-lock.json
 
 #IDE
 .idea
+
+# Test runner cache
+.tap/

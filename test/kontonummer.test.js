@@ -1,9 +1,6 @@
 /*
  *  Test av kontonummer
  *
- *  updated 08 Feb 2021
- *  by Lars Erik Storbukås <https://github.com/storbukas>
- *
  *  Source: https://github.com/storbukas/norsk-validator
  *
  *  Licensed under the MIT License
@@ -13,35 +10,32 @@
 
 'use strict';
 
-const tap = require('tap');
-const validator = require('../src/index.js');
+const { test } = require('node:test');
+const assert = require('node:assert');
+const { kontonummer } = require('../dist/index.js');
 
-tap.equal(
-  true, validator.kontonummer('76940512057'),
-  '76940512057 er et gyldig kontonummer'
-);
+test('kontonummer validation', async (t) => {
+  await t.test('76940512057 er et gyldig kontonummer', () => {
+    assert.strictEqual(kontonummer('76940512057'), true);
+  });
 
-tap.equal(
-  true, validator.kontonummer('7694 05 12057'),
-  '7694 05 12057 er et gyldig kontonummer'
-);
+  await t.test('7694 05 12057 er et gyldig kontonummer (med mellomrom)', () => {
+    assert.strictEqual(kontonummer('7694 05 12057'), true);
+  });
 
-tap.equal(
-  true, validator.kontonummer('7694.05.12057'),
-  '7694.05.12057 er et gyldig kontonummer'
-);
+  await t.test('7694.05.12057 er et gyldig kontonummer (med punktum)', () => {
+    assert.strictEqual(kontonummer('7694.05.12057'), true);
+  });
 
-tap.equal(
-  false, validator.kontonummer('1010 10 10101'),
-  '1010 10 10101 er IKKE et gyldig kontonummer'
-);
+  await t.test('1010 10 10101 er IKKE et gyldig kontonummer', () => {
+    assert.strictEqual(kontonummer('1010 10 10101'), false);
+  });
 
-tap.equal(
-  false, validator.kontonummer('1010 10 1010'),
-  '1010 10 1010 er IKKE et gyldig kontonummer'
-);
+  await t.test('1010 10 1010 er IKKE et gyldig kontonummer (feil lengde)', () => {
+    assert.strictEqual(kontonummer('1010 10 1010'), false);
+  });
 
-tap.equal(
-  false, validator.kontonummer(''),
-  '"" er IKKE et gyldig kontonummer'
-);
+  await t.test('tom streng er IKKE et gyldig kontonummer', () => {
+    assert.strictEqual(kontonummer(''), false);
+  });
+});

@@ -1,9 +1,6 @@
 /*
  *  Test av organisasjonsnummer
  *
- *  updated 08 Feb 2021
- *  by Lars Erik Storbukås <https://github.com/storbukas>
- *
  *  Source: https://github.com/storbukas/norsk-validator
  *
  *  Licensed under the MIT License
@@ -13,25 +10,24 @@
 
 'use strict';
 
-const tap = require('tap');
-const validator = require('../src/index.js');
+const { test } = require('node:test');
+const assert = require('node:assert');
+const { organisasjonsnummer } = require('../dist/index.js');
 
-tap.equal(
-  true, validator.organisasjonsnummer('998447356'),
-  '998447356 er et gyldig organisasjonsnummer'
-);
+test('organisasjonsnummer validation', async (t) => {
+  await t.test('998447356 er et gyldig organisasjonsnummer', () => {
+    assert.strictEqual(organisasjonsnummer('998447356'), true);
+  });
 
-tap.equal(
-  false, validator.organisasjonsnummer('998447357'),
-  '998447356 er IKKE et gyldig organisasjonsnummer'
-);
+  await t.test('998447357 er IKKE et gyldig organisasjonsnummer', () => {
+    assert.strictEqual(organisasjonsnummer('998447357'), false);
+  });
 
-tap.equal(
-  false, validator.organisasjonsnummer('99844735'),
-  '998447356 er IKKE et gyldig organisasjonsnummer'
-);
+  await t.test('99844735 er IKKE et gyldig organisasjonsnummer (feil lengde)', () => {
+    assert.strictEqual(organisasjonsnummer('99844735'), false);
+  });
 
-tap.equal(
-  false, validator.organisasjonsnummer(''),
-  '"" er IKKE et gyldig organisasjonsnummer'
-);
+  await t.test('tom streng er IKKE et gyldig organisasjonsnummer', () => {
+    assert.strictEqual(organisasjonsnummer(''), false);
+  });
+});

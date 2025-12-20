@@ -11,19 +11,21 @@
  *
  */
 
-'use strict';
+import { kontrollsifferMod11 } from './tools/kontrollsiffer';
 
-import { kontrollsiffferMod11 } from "./tools/kontrollsiffer";
+const organisasjonsnummer = (organisasjonsnummer: string | number | null | undefined): boolean => {
+  if (!organisasjonsnummer) {
+    return false;
+  }
 
-const organisasjonsnummer = (organisasjonsnummer: any) => {
   const organisasjonsnummerString = organisasjonsnummer.toString();
 
-  if (!organisasjonsnummerString || organisasjonsnummerString.length !== 9) {
+  if (organisasjonsnummerString.length !== 9) {
     return false;
   }
 
   return parseInt(organisasjonsnummerString.charAt(organisasjonsnummerString.length - 1), 10)
-    === kontrollsiffferMod11(organisasjonsnummerString);
+    === kontrollsifferMod11(organisasjonsnummerString);
 };
 
 export default organisasjonsnummer;
